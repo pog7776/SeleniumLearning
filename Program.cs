@@ -35,7 +35,7 @@ namespace SeleniumLearning {
                 Console.ResetColor();
 
                 try {
-                    PersonalSite(driver);
+                    TestQuote(driver);
                 }
                 catch (Exception e){
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -52,7 +52,7 @@ namespace SeleniumLearning {
             List<WebDriver> drivers = new List<WebDriver>();
             
             // Hide USB errors that aren't important
-            // ?? dont work
+            // TODO ?? dont work, look into this
             // ChromeOptions options = new ChromeOptions();
             // options.AddAdditionalChromeOption("excludeSwitches", new List<string> { "enable-logging" });
             dm.SetUpDriver(new ChromeConfig());
@@ -73,7 +73,7 @@ namespace SeleniumLearning {
         }
         
         [TestMethod]
-        public static void PersonalSite(WebDriver driver) {
+        public static void TestQuote(WebDriver driver) {
             driver.Navigate().GoToUrl("https://jackcooper.dev");
 
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
@@ -85,11 +85,15 @@ namespace SeleniumLearning {
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
             IWebElement quote = driver.FindElement(By.Id("quoteContainer"));
 
-            WaitForStableText(quote, 0.5f);
-
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Quote: " + quote.Text);
-            Console.ResetColor();
+            if(WaitForStableText(quote, 0.5f, 10000)) {
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("Quote: " + quote.Text);
+                Console.ResetColor();
+            } else {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Fail: Could not get quote");
+                Console.ResetColor();
+            }
 
             driver.Quit();
         }
