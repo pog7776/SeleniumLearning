@@ -606,11 +606,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\SeleniumLearning.csproj",
+      "projectUniqueName": "C:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\SeleniumLearning.csproj",
       "projectName": "SeleniumLearning",
-      "projectPath": "c:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\SeleniumLearning.csproj",
+      "projectPath": "C:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\SeleniumLearning.csproj",
       "packagesPath": "C:\\Users\\jackc\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\obj\\",
+      "outputPath": "C:\\Users\\jackc\\OneDrive\\Documents\\Dev\\Commbank\\SeleniumLearning\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jackc\\AppData\\Roaming\\NuGet\\NuGet.Config",

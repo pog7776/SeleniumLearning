@@ -23,3 +23,4 @@ C:\Users\jackc\OneDrive\Documents\Dev\Commbank\SeleniumLearning\obj\Debug\net5.0
 C:\Users\jackc\OneDrive\Documents\Dev\Commbank\SeleniumLearning\obj\Debug\net5.0\SeleniumLearning.pdb
 C:\Users\jackc\OneDrive\Documents\Dev\Commbank\SeleniumLearning\obj\Debug\net5.0\SeleniumLearning.genruntimeconfig.cache
 C:\Users\jackc\OneDrive\Documents\Dev\Commbank\SeleniumLearning\obj\Debug\net5.0\ref\SeleniumLearning.dll
+C:\Users\jackc\OneDrive\Documents\Dev\Commbank\SeleniumLearning\bin\Debug\net5.0\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
