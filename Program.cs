@@ -27,10 +27,6 @@ namespace SeleniumLearning {
 
             DriverManager dm = new DriverManager();
 
-            // ChromeDriver driver = new ChromeDriver();
-            // Console.WriteLine(driver.GetType());
-            //PersonalSite(driver);
-
             foreach(WebDriver driver in SetupDrivers(dm)) {
                 driver.Manage().Window.Maximize();
 
@@ -44,16 +40,21 @@ namespace SeleniumLearning {
                 catch (Exception e){
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine(driver.GetType() + " Failed");
-                    Console.WriteLine("Error:" + e);
+                    Console.WriteLine("Error:" + e.Message);
                     Console.ResetColor();
                     driver.Quit();
                 }
             }
         }
 
+        [TestInitialize]
         public static List<WebDriver> SetupDrivers(DriverManager dm) {
             List<WebDriver> drivers = new List<WebDriver>();
-
+            
+            // Hide USB errors that aren't important
+            // ?? dont work
+            // ChromeOptions options = new ChromeOptions();
+            // options.AddAdditionalChromeOption("excludeSwitches", new List<string> { "enable-logging" });
             dm.SetUpDriver(new ChromeConfig());
             drivers.Add(new ChromeDriver());
 
@@ -70,7 +71,8 @@ namespace SeleniumLearning {
 
             return drivers;
         }
-
+        
+        [TestMethod]
         public static void PersonalSite(WebDriver driver) {
             driver.Navigate().GoToUrl("https://jackcooper.dev");
 
@@ -121,8 +123,6 @@ namespace SeleniumLearning {
             }
             return true;
         }
-
-
 
         protected static void Test() {
             //IWebDriver driver = new ChromeDriver();
