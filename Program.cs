@@ -78,7 +78,7 @@ namespace SeleniumLearning {
             driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(10);
             IWebElement quote = driver.FindElement(By.Id("quoteContainer"));
 
-            WaitForStableText(quote);
+            WaitForStableText(quote, 0.5f);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Quote: " + quote.Text);
@@ -87,24 +87,30 @@ namespace SeleniumLearning {
             driver.Quit();
         }
 
-        public static bool WaitForStableText(IWebElement element, int pollRate = 5, int ttl = 5000) {
+        /// <summary>
+        /// Polls an elements text until it hasn't changed since last poll
+        /// </summary>
+        /// <param name="element">The element to watch for changes.</param>
+        /// <param name="pollRate">Times per second to check the element.</param>
+        /// <param name="ttl">Time in ms until it determines the text is not stable.</param>
+        /// <returns>true: When no change is detected since last poll. false: When ttl is exceeded.</returns>
+        public static bool WaitForStableText(IWebElement element, float pollRate = 5, int ttl = 5000) {
             // Store previous text
             string temp = "";
             // Count attempts
             int time = 0;
 
             // INFO "..." is specifically for my site
-            while(element.Text != temp || element.Text == "...") {
+            while(element.Text != temp) {// || element.Text == "...") {
                 // Update the temp text to the curreent text
                 temp = element.Text;
 
                 // Wait for time
-                Thread.Sleep(1000/pollRate);
-                time += 1000/pollRate;
+                Thread.Sleep(Convert.ToInt32(1000/pollRate));
+                time += Convert.ToInt32(1000/pollRate);
 
                 // Check if gone over ttl
                 if(time >= ttl) {
-                    Console.WriteLine("No change detected.");
                     return false;
                 }
             }
