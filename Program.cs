@@ -16,6 +16,7 @@ using SeleniumDocs.GettingStarted;
 using System.Collections.Generic;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
+using System.IO;
 
 namespace SeleniumLearning {
     class Program {
@@ -88,6 +89,7 @@ namespace SeleniumLearning {
             if(WaitForStableText(quote, 0.5f, 10000)) {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine("Quote: " + quote.Text);
+                TakeScreenshot(driver);
                 Console.ResetColor();
             } else {
                 Console.ForegroundColor = ConsoleColor.Red;
@@ -96,6 +98,19 @@ namespace SeleniumLearning {
             }
 
             driver.Quit();
+        }
+
+        public static void TakeScreenshot(WebDriver driver) {
+            string folder = "screenshots\\";
+            if(File.Exists(folder) == false) {
+                Directory.CreateDirectory(folder);
+            }
+            string saveLocation = folder + DateTime.Now.ToString("yyyyMMddhhmmss") + "quote.png";
+            Screenshot pic = driver.GetScreenshot();
+            pic.SaveAsFile(saveLocation, ScreenshotImageFormat.Png);
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("Saved screenshot to: " + saveLocation);
+            Console.ResetColor();
         }
 
         /// <summary>
